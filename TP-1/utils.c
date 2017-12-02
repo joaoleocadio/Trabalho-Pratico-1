@@ -13,7 +13,7 @@ void preencherMatriz(char mat[TAMANHO][TAMANHO])
     int num = '0';
     char abc = 'A';
     
-    mat[0][0] = ' '; //posição [0][0] da matriz preenchida com espaço em branco
+    mat[1][1] = " "; //posição [1][1] da matriz preenchida com espaço em branco
     
     for (i = 1; i < TAMANHO; ++i)    //preenche a 1ª linha com letras (A a I)
     {
@@ -25,6 +25,7 @@ void preencherMatriz(char mat[TAMANHO][TAMANHO])
     {
         mat[i][0] = num + i;
     } 
+    
     for (i = 1; i < TAMANHO; ++i)   //preencher o resto da matriz com '-'
     {
         for (j = 1; j < TAMANHO; ++j)
@@ -39,6 +40,8 @@ void imprimirMatriz(char mat[TAMANHO][TAMANHO])
     int i, j;
     i = j = 0;
     
+    printf("\tApresentação do tabuleiro de jogo\n ");
+    
     for (i = 0; i < TAMANHO; ++i)
     {
         for (j = 0; j < TAMANHO; ++j)
@@ -46,7 +49,7 @@ void imprimirMatriz(char mat[TAMANHO][TAMANHO])
             printf("%c", mat[i][j]);
             printf("|");
         }
-        puts(" ");// para a matriz ficar em quadrada
+        puts(" ");// para a matriz ficar quadrada
     }   
 }
 int lerString(char *string, int max) 
@@ -64,6 +67,7 @@ int lerString(char *string, int max)
 void apresentacao()
 {
     printf("\tJogo 3 em linha!");
+    printf("\n");
     printf("\n");
 }
 
