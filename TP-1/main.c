@@ -30,5 +30,6 @@ int main(int argc, char** argv)
     escolherTokens(tokens);
     preencherMatriz(mat);
     imprimirMatriz(mat);
+    jogo(mat, tokens);
 }
 
