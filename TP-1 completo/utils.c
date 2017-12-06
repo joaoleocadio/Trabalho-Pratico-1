@@ -152,7 +152,7 @@ void jogo(char mat[][TAMANHO], char tokens[])
             {
                 while (mat[l][c] != '-' || mat[l][c] == tokens[0] || mat[l][c] == tokens[1]) 
                 {
-                    puts("Posição ocupada!\n");
+                    puts("Posição ocupada ou existente!\n");
                     printf("jogador %d Introduza a linha: ", jogador);
                     scanf("%d", &l);
                     printf("jogador %d Introduza a coluna: ", jogador);
@@ -230,7 +230,7 @@ void jogo(char mat[][TAMANHO], char tokens[])
             {
                 while (mat[l][c] != '-' || mat[l][c] == tokens[0] || mat[l][c] == tokens[1])
                 {
-                    puts("Posição ocupada!\n");
+                    puts("Posição ocupada ou inexistente!\n");
                     printf("jogador %d Introduza a linha: ", jogador);
                     scanf("%d", &l);
                     printf("jogador %d Introduza a coluna: ", jogador);
