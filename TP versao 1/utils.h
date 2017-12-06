@@ -14,10 +14,17 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#define TAMANHO 10
+#define TAMTOKENS 2
+
+void jogo(char mat[][TAMANHO], char tokens[]);
+void apresentacao();
 void clean_buffer();
 void preencherMatriz();
 void imprimirMatriz();
 void escolherTokens();
+int checkResult(char mat[TAMANHO][TAMANHO], char tokens[], int l, char c);
+
 
 #endif /* UTILS_H */
 
