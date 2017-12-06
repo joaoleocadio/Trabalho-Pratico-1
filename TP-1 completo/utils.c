@@ -11,7 +11,8 @@ void clean_buffer() {
     while ((ch = getchar()) != '\n' && ch != EOF);
 }
 
-void preencherMatriz(char mat[TAMANHO][TAMANHO]) {
+void preencherMatriz(char mat[TAMANHO][TAMANHO]) 
+{
     int i, j;
     int num = '0';
     char abc = 'A';
@@ -31,20 +32,24 @@ void preencherMatriz(char mat[TAMANHO][TAMANHO]) {
 
     for (i = 1; i < TAMANHO; ++i) //preencher o resto da matriz com '-'
     {
-        for (j = 1; j < TAMANHO; ++j) {
+        for (j = 1; j < TAMANHO; ++j)
+        {
             mat[i][j] = '-';
         }
     }
 }
 
-void imprimirMatriz(char mat[TAMANHO][TAMANHO]) {
+void imprimirMatriz(char mat[TAMANHO][TAMANHO])
+{
     int i, j;
     i = j = 0;
 
     printf("\tApresentação do tabuleiro de jogo\n ");
 
-    for (i = 0; i < TAMANHO; ++i) {
-        for (j = 0; j < TAMANHO; ++j) {
+    for (i = 0; i < TAMANHO; ++i) 
+    {
+        for (j = 0; j < TAMANHO; ++j) 
+        {
             printf("%c", mat[i][j]);
             printf("|");
         }
@@ -65,38 +70,43 @@ int lerString(char *string, int max) {
     return 0;
 }
 
-void apresentacao() {
+void apresentacao() 
+{
     printf("\tJogo 3 em linha!");
     printf("\n");
     printf("\n");
 }
 
-void escolherTokens(char tokens[]) {
+void escolherTokens(char tokens[])
+{
     int i;
     char jogador1[N_PLAYERS];
     char jogador2[N_PLAYERS];
 
-    for (i = 0; i < 1; ++i) { //Inserir o nome do jogador 1
+    for (i = 0; i < 1; ++i) 
+    {                                           //Inserir o nome do jogador 1
         printf("Jogador nº %d\n", i + 1);
         printf("Introduza o seu nome: ");
         lerString(jogador1, N_PLAYERS);
     }
 
-    for (i = 0; i < 1; ++i) { //Inserir o nome do jogador 2
+    for (i = 0; i < 1; ++i) 
+    {                                           //Inserir o nome do jogador 2
         printf("Jogador nº %d\n", i + 2);
         printf("Introduza o seu nome: ");
         lerString(jogador2, N_PLAYERS);
     }
 
-    for (i = 0; i < (TAMTOKENS-1); ++i) { //Escolhe token para cada jogador
+    for (i = 0; i < (TAMTOKENS-1); ++i)
+    {                                                   //Escolhe token para cada jogador
         printf("%s escolha o seu token: ", jogador1);
-        scanf("%c", &tokens[0]); //guardar no indice 0 do vetor
+        scanf("%c", &tokens[0]);    //guardar no indice 0 do vetor
         clean_buffer();
         printf("%s escolha o seu token: ", jogador2);
-        scanf("%c", &tokens[1]); //guardar no indice 1 do vetor
+        scanf("%c", &tokens[1]);    //guardar no indice 1 do vetor
 
-        if (tokens[0] == tokens[1]) //comparar as posições e decrementar ate que escolham 
-        { //tokens diferente
+        if (tokens[0] == tokens[1])     //comparar as posições e decrementar ate que escolham 
+        {                               //tokens diferente
             i -= 1;
             puts("Os tokens são iguais!");
             puts("Por favor, introduzam tokens diferentes para jogar: ");
@@ -107,7 +117,8 @@ void escolherTokens(char tokens[]) {
     puts("");
 }
 
-void jogo(char mat[][TAMANHO], char tokens[]) {
+void jogo(char mat[][TAMANHO], char tokens[]) 
+{
     int l, i, k = 0;
     char c;
     int jogador = 1;
@@ -117,7 +128,8 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
     for (i = 0; i < 81; ++i) //81 = nº de jogadas 9 x 9
     {
         ++contar;
-        while (jogador == 1) {
+        while (jogador == 1)
+        {
             printf("jogador %d Introduza a linha: ", jogador);
             scanf("%d", &l);
             printf("jogador %d Introduza a coluna: ", jogador);
@@ -132,8 +144,8 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
             }
             c = c - 64; //conversão de letras
             if (mat[l][c] == '-')
-            {
-                mat[l][c] = tokens[0];
+            {                                               //verificar se é possivel jogar e tambem ganhar
+                mat[l][c] = tokens[0];                      //função checkResult
                 vitoria = checkResult(mat,tokens, l, c);
             } 
             else if (mat[l][c] != '-') 
@@ -146,13 +158,13 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
                     printf("jogador %d Introduza a coluna: ", jogador);
                     clean_buffer();
                     scanf("%c", &c);
-                    if (c == 90 && l == 0) 
+                    if (c == 90 && l == 0)  //http://www.asciitable.com/
                     {                                                   // desistir se a posicção ja estiver ocupada
                         printf("Jogador %d desistiu!! Nº de jogadas: %d\n ", jogador, contar);
                         ++k;
                         break;
                     }
-                    c = c - 64;
+                    c = c - 64; //converter os caracteres Tabela ASCII | http://www.asciitable.com/
                     clean_buffer();
                     if (mat[l][c] == '-') 
                     {
@@ -182,7 +194,6 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
             ++i;
         }
 
-        //if
         if (k > 0) 
         {               // sair totalmente
             break;
@@ -203,7 +214,7 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
             clean_buffer();
             scanf("%c", &c);
             clean_buffer();
-            if (c == 90 && l == 0)  //Z = 90 ASCII
+            if (c == 90 && l == 0)  //Z = 90 | ASCII http://www.asciitable.com/
             {
                 printf("Jogador %d desistiu!! Nº de jogadas : %d\n ", jogador, contar);
                 ++k;
@@ -225,7 +236,7 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
                     printf("jogador %d Introduza a coluna: ", jogador);
                     clean_buffer();
                     scanf("%c", &c);
-                    if (c == 90 && l == 0)
+                    if (c == 90 && l == 0)   //http://www.asciitable.com/
                     {
                         printf("Jogador %d desistiu!! Nº de jogadas: %d\n ", jogador, contar);
                         ++k;
@@ -247,12 +258,6 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
                     }
                 }
             } 
-            else if (c == 'Z' || c == 'z' && l == '0' || l == '0') 
-            {
-                imprimirMatriz(mat);
-                printf("Jogador %d desistiu!! Nº de jogadas: %d\n ", jogador, contar);
-                break;
-            }
             if (k > 0) 
             {
                 break;
@@ -282,10 +287,10 @@ void jogo(char mat[][TAMANHO], char tokens[]) {
 
 int checkResult(char mat[TAMANHO][TAMANHO], char tokens[], int l, char c)
 {
-    int i, j;
-
-
-    //checks horizontal win
+    int i, j;                       
+                                        //https://stackoverflow.com/questions/25289526/connect-4-check-if-player-wins
+    
+    // verificar posições horizontais
     for (i = 1; i < TAMANHO; ++i)
     {
         for (j = 1; j < TAMANHO - 2; ++j)
@@ -297,7 +302,7 @@ int checkResult(char mat[TAMANHO][TAMANHO], char tokens[], int l, char c)
         }
     }
 
-    //checks vertical win
+    // verificar posicões verticais
     for (i = 1; i < TAMANHO - 2; ++i)
     {
         for (j = 1; j < TAMANHO; ++j) 
@@ -310,7 +315,7 @@ int checkResult(char mat[TAMANHO][TAMANHO], char tokens[], int l, char c)
         }
     }
 
-    //checks rigth diagonal win
+    // verificar a diagonal direita
     for (i = 1; i < TAMANHO - 2; ++i)
     {
         for (j = 1; j < TAMANHO - 2; ++j)
@@ -322,7 +327,7 @@ int checkResult(char mat[TAMANHO][TAMANHO], char tokens[], int l, char c)
         }
     }
 
-    //checks left diagonal win
+    // verificar a diagonal esquerda
     for (i = 1; i < TAMANHO - 2; ++i)
     {
         for (j = 1; j < TAMANHO - 2; ++j) 
